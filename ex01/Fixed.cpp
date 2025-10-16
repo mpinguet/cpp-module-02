@@ -38,10 +38,11 @@ void Fixed::setRawBits( int const raw )
 }
 Fixed::Fixed(const int i)
 {
-
+	std::cout << "Int constructor called" << std::endl;
+	this->value = i << _fractionalBits;
 }
-
 Fixed::Fixed(const float i)
 {
-
+	std::cout << "Int constructor called" << std::endl;
+	this->value = roundf(i * (1 << _fractionalBits));
 }
