@@ -20,7 +20,6 @@ Fixed::Fixed(const Fixed& copy)
 
 int Fixed::getRawBits() const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return this->value;
 }
 
@@ -43,6 +42,21 @@ Fixed::Fixed(const int i)
 }
 Fixed::Fixed(const float i)
 {
-	std::cout << "Int constructor called" << std::endl;
+	std::cout << "Float constructor called" << std::endl;
 	this->value = roundf(i * (1 << _fractionalBits));
+}
+int Fixed::toInt() const
+{
+    return (this->value >> _fractionalBits);
+}
+
+float Fixed::toFloat() const
+{
+    return ((float)this->value / (float)(1 << _fractionalBits));
+}
+
+std::ostream & operator<<(std::ostream & os, Fixed const & f)
+{
+    os << f.toFloat();
+    return os;
 }
